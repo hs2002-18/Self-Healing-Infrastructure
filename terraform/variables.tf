@@ -12,7 +12,7 @@ variable "key_name" {
 
 variable "path_to_public_key" {
     description = "PATH TO PUBLIC KEY"
-    default = "../self-healing-key.pub"
+    default = "self-healing-key.pub"
     type = string
 }
 
