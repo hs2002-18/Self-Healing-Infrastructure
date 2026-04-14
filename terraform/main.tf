@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_key_pair" "self_healing_key"{
     key_name = var.key_name
-    public_key  = file(var.path_to_public_key)
+    public_key  = var.public_key
 }
 
 resource "aws_security_group" "self_healing_sg"{
