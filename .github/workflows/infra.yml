@@ -1,1 +1,38 @@
-name: Infra Pipelines
+name: Infra Pipeline
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.tf'
+      - '.github/workflows/infra.yml'
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      
+    - name: Setup AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+      
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
