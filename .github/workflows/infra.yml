@@ -8,11 +8,13 @@ on:
       - '**/*.tf'
       - '.github/workflows/infra.yml'
   workflow_dispatch:
+  
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
+    env:
+      TF_VAR_public_key: ${{ secrets.TF_VAR_PUBLIC_KEY }}
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
