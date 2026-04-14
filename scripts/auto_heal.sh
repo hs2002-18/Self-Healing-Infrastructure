@@ -1,13 +1,11 @@
 #!/bin/bash
 
-while true
-do
-  ./health_check.sh
+CONTAINER_NAME="my-app"
 
-  if [ $? -ne 0 ]; then
-    echo "Restarting container..."
-    docker restart my-app
+while true; do
+  if ! docker ps | grep $CONTAINER_NAME > /dev/null; then
+    echo "$(date) - Container down! Restarting..." >> heal.log
+    docker start $CONTAINER_NAME
   fi
-
   sleep 10
 done
