@@ -9,6 +9,7 @@ on:
       - 'auto_heal.sh'
       - 'app/**'
       - '.github/workflows/deploy.yml'
+  workflow_dispatch:
 
 jobs:
   deploy:
