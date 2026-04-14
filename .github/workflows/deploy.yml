@@ -1,0 +1,12 @@
+name: APP Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docker-compose.yml'
+      - 'auto_heal.sh'
+      - 'app/**'
+      - '.github/workflows/deploy.yml'
+jobs:
