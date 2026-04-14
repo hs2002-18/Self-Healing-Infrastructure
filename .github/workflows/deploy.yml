@@ -9,10 +9,15 @@ on:
       - 'auto_heal.sh'
       - 'app/**'
       - '.github/workflows/deploy.yml'
+  workflow_run:
+    workflows: ["Infrastructure Provisioning"]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
