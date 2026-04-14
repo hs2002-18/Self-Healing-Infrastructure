@@ -10,7 +10,7 @@ on:
       - 'app/**'
       - '.github/workflows/deploy.yml'
   workflow_run:
-    workflows: ["Infrastructure Provisioning"]
+    workflows: ["Infra Pipeline"]
     types:
       - completed
   workflow_dispatch:
