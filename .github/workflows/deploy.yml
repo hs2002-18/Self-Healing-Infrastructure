@@ -73,12 +73,18 @@ jobs:
               git clone https://github.com/hs2002-18/Self-Healing-Infrastructure.git
             fi
 
-            cd Self-Healing-Infrastructure/docker
+            cd Self-Healing-Infrastructure
+            git pull origin master
+
+            cd docker
 
             # Restart containers
             docker-compose down
             docker-compose up -d
 
+            #Go back to root
+            cd ..
+            
             # Start self-healing script
-            chmod +x auto_heal.sh
-            nohup ./auto_heal.sh > heal.log 2>&1 &
+            chmod +x scripts/auto_heal.sh
+            nohup ./scripts/auto_heal.sh > heal.log 2>&1 &
